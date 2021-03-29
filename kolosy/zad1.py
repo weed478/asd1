@@ -1,5 +1,4 @@
 from random import randint
-
 from zad1testy import runtests
 
 
@@ -188,6 +187,7 @@ def select(A, p, r, k):
 
 def Median(T):
     n = len(T)
+    
     """
     t jest widoczna jako tablica 1D długości n^2
     dzielimy na obszary:
