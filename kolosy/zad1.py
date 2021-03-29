@@ -1,3 +1,5 @@
+from random import randint
+
 from zad1testy import runtests
 
 
@@ -91,7 +93,7 @@ Bądź w przypadku nieparzystego n:
 Mapując obszary A', B', C' do A'', B'', C'':
 +---+-----------+
 |B''|           |
-+---+---+  C''' |
++---+---+  C''  |
 |   |B''|       |
 |   +---+---+   |
 |       |B''|   |
@@ -207,7 +209,7 @@ def Median(T):
     select(t, (n * n - n) // 2, N, (n * n - n) // 2 + n - 1)
 
 
-runtests(Median)
+# runtests(Median)
 
 
 def custom_tests():
@@ -222,17 +224,20 @@ def custom_tests():
     #      [9,  10, 3,  12],
     #      [13, 14, 6,  4]]
 
-    t = [[ 0,  1,  -1,  1,  0],
-         [-1,  0,  1,  1,  -1],
-         [-1, -1,  1,  -1,  1],
-         [-1, 1, -1,  0,  1],
-         [0, 1, 1, -1,  -1]]
+    # t = [[ 0,  1,  -1,  1,  0],
+    #      [-1,  0,  1,  1,  -1],
+    #      [-1, -1,  1,  -1,  1],
+    #      [-1, 1, -1,  0,  1],
+    #      [0, 1, 1, -1,  -1]]
 
     # t = [[1,  24, 23, 22, 21],
     #      [6,  2,  18, 17, 16],
     #      [11, 12, 3,  19, 25],
     #      [15, 14, 13, 4,  20],
     #      [10, 9,  8,  7,  5]]
+
+    n = 21
+    t = [[randint(-2, 2) for _ in range(n)] for _ in range(n)]
 
     n = len(t)
     T = InterpretLayer1(InterpretLayer2(t))
@@ -245,3 +250,6 @@ def custom_tests():
         for x in range(len(t)):
             print(t[y][x], end="\t")
         print()
+
+
+custom_tests()
