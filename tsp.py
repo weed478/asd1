@@ -8,7 +8,7 @@ class City:
         self.y = y
 
     def __repr__(self):
-        return repr(self.name)
+        return self.name
 
     def distance(self, c):
         return sqrt((self.x - c.x) ** 2 + (self.y - c.y) ** 2)
@@ -35,6 +35,7 @@ def tsp(C):
 
 
 def tspb(C):
+    C.sort(key=lambda c: c.x)
     n = len(C)
 
     def d(i, j):
@@ -43,7 +44,7 @@ def tspb(C):
     F = [[inf] * n for _ in range(n)]
     F[0][1] = d(0, 1)
 
-    M = [[None] * n for _ in range(n)]
+    M = [None] * n
 
     def f(i, j):
         if F[i][j] != inf:
@@ -55,7 +56,7 @@ def tspb(C):
                 x = f(k, j - 1) + d(k, j)
                 if x < best:
                     best = x
-                    M[i][j] = k
+                    M[j] = k
             F[i][j] = best
         else:
             F[i][j] = f(i, j - 1) + d(j - 1, j)
@@ -76,18 +77,28 @@ def tspb(C):
     j = n - 1
     swapped = False
 
+    route_a = []
+    route_b = []
+
     while j > 0:
         if swapped:
-            print(C[i], C[j])
+            route_b.append(C[j])
         else:
-            print(C[j], C[i])
+            route_a.append(C[j])
 
         if i == j - 1:
-            i = M[i][j]
+            i = M[j]
             j = j - 1
             swapped = not swapped
         else:
             j = j - 1
+
+    print(C[0], end=' ')
+    for c in reversed(route_a):
+        print(c, end=' ')
+    for c in route_b:
+        print(c, end=' ')
+    print()
 
 
 C = [City("Wrocław", 0, 2),
@@ -127,4 +138,4 @@ F = [City("A", 0, 0),
      City("D", 3, 1)]
 
 # tsp(D)
-tspb(F)
+tspb(D)
