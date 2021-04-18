@@ -31,9 +31,29 @@ def tsp(C):
     print(solution)
 
 
+def tspb(C):
+    n = len(C)
+
+    def d(i, j):
+        return C[i].distance(C[j])
+
+    def f(i, j):
+        if i == 0 and j == 1:
+            return d(0, 1)
+
+        if i == j - 1:
+            return min((f(k, j - 1) + d(k, j) for k in range(j - 1)))
+        else:
+            return f(i, j - 1) + d(j - 1, j)
+
+    solution = min((f(i, n - 1) + d(i, n - 1) for i in range(1, n - 1)))
+    print(solution)
+
+
 C = [City("Wrocław", 0, 2),
      City("Warszawa", 4, 3),
      City("Gdańsk", 2, 4),
      City("Kraków", 3, 1)]
 
 tsp(C)
+tspb(C)
