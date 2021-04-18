@@ -73,14 +73,13 @@ def tspb(C):
 
     print(solution)
 
-    i = sol_i
-    j = n - 1
-    swapped = False
-
     route_a = []
     route_b = []
 
-    while j > 0:
+    swapped = False
+    i = sol_i
+
+    for j in range(n - 1, 0, -1):
         if swapped:
             route_b.append(C[j])
         else:
@@ -88,27 +87,20 @@ def tspb(C):
 
         if i == j - 1:
             i = M[j]
-            j = j - 1
             swapped = not swapped
-        else:
-            j = j - 1
 
     print(C[0], end=' ')
     for c in reversed(route_a):
         print(c, end=' ')
     for c in route_b:
         print(c, end=' ')
-    print()
+    print(C[0])
 
 
 C = [City("Wrocław", 0, 2),
      City("Warszawa", 4, 3),
      City("Gdańsk", 2, 4),
-     City("Kraków", 3, 1),
-     City("Kraków", 5, 7),
-     City("Kraków", 7, 2),
-     City("Kraków", 6, 1),
-     City("Kraków", 1, 4)]
+     City("Kraków", 3, 1)]
 
 D = [City("A", 0, 2),
      City("B", 1, 1),
@@ -137,5 +129,5 @@ F = [City("A", 0, 0),
      City("C", 2, 0),
      City("D", 3, 1)]
 
-# tsp(D)
-tspb(D)
+tsp(C)
+tspb(C)
