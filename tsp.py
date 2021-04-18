@@ -7,6 +7,9 @@ class City:
         self.x = x
         self.y = y
 
+    def __repr__(self):
+        return repr(self.name)
+
     def distance(self, c):
         return sqrt((self.x - c.x) ** 2 + (self.y - c.y) ** 2)
 
@@ -40,19 +43,51 @@ def tspb(C):
     F = [[inf] * n for _ in range(n)]
     F[0][1] = d(0, 1)
 
+    M = [[None] * n for _ in range(n)]
+
     def f(i, j):
         if F[i][j] != inf:
             return F[i][j]
 
         if i == j - 1:
-            F[i][j] = min((f(k, j - 1) + d(k, j) for k in range(j - 1)))
+            best = inf
+            for k in range(j - 1):
+                x = f(k, j - 1) + d(k, j)
+                if x < best:
+                    best = x
+                    M[i][j] = k
+            F[i][j] = best
         else:
             F[i][j] = f(i, j - 1) + d(j - 1, j)
 
         return F[i][j]
 
-    solution = min((f(i, n - 1) + d(i, n - 1) for i in range(1, n - 1)))
+    solution = inf
+    sol_i = None
+    for i in range(1, n - 1):
+        x = f(i, n - 1) + d(i, n - 1)
+        if x < solution:
+            solution = x
+            sol_i = i
+
     print(solution)
+
+    i = sol_i
+    j = n - 1
+    swapped = False
+
+    while j > 0:
+        if swapped:
+            print(C[i], C[j])
+        else:
+            print(C[j], C[i])
+
+        if i == j - 1:
+            i = M[i][j]
+            j = j - 1
+            swapped = not swapped
+        else:
+            j = j - 1
 
 
 C = [City("Wrocław", 0, 2),
@@ -86,5 +121,10 @@ E = [City("A", 0, 2),
 E_sol = "A E C B D F A"
 E_num = 15.23681679184
 
-tsp(C)
-tspb(C)
+F = [City("A", 0, 0),
+     City("B", 1, 1),
+     City("C", 2, 0),
+     City("D", 3, 1)]
+
+# tsp(D)
+tspb(F)
