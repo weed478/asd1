@@ -2,6 +2,16 @@ from math import inf
 
 
 def optimize_stops(t, L, S, P):
+    """
+    Go to 't' minimizing stops.
+    At each station go to the farthest one.
+
+    :param t: target
+    :param L: tank capacity
+    :param S: stations
+    :param P: prices
+    :return: path taken
+    """
     S = [0] + S
     path = []
 
@@ -33,6 +43,15 @@ def optimize_stops(t, L, S, P):
 
 
 def optimize_cost(t, L, S, P):
+    """
+    Find cheapest path to 't' always buying all fuel.
+
+    :param t: target
+    :param L: tank capacity
+    :param S: stations
+    :param P: prices
+    :return: minimum cost needed to get to station i
+    """
     assert t > max(S)
     S = [0] + S + [t]
     P = [0] + P + [0]
@@ -56,6 +75,17 @@ def optimize_cost(t, L, S, P):
 
 
 def optimize_cost_any_amount(t, L, S, P):
+    """
+    Find cheapest path to 't'. Can buy any amount of fuel.
+    At each station find next station with cheapest fuel
+    or go to the farthest one.
+
+    :param t: target
+    :param L: tank capacity
+    :param S: stations
+    :param P: prices
+    :return: (money spent, path)
+    """
     assert t > max(S)
     S = [0] + S + [t]
     P = [0] + P + [0]
