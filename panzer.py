@@ -77,8 +77,9 @@ def optimize_cost(t, L, S, P):
 def optimize_cost_any_amount(t, L, S, P):
     """
     Find cheapest path to 't'. Can buy any amount of fuel.
-    At each station find next station with cheapest fuel
-    or go to the farthest one.
+    At each station find next station with cheapest fuel.
+    If current station has cheapest fuel
+    buy all fuel and go to next cheapest.
 
     :param t: target
     :param L: tank capacity
@@ -100,32 +101,28 @@ def optimize_cost_any_amount(t, L, S, P):
         max_range = S[pos] + L
 
         # find station with cheapest fuel
-        next_stop = pos
-        farthest_stop = pos
+        next_stop = pos + 1
         for i in range(pos + 1, n):
             if S[i] <= max_range:
-                farthest_stop = i
                 if P[i] < P[next_stop]:
                     next_stop = i
             else:
                 break
 
-        if next_stop > pos:
-            # buy enough to get to next_stop
-            missing = max(0, S[next_stop] - S[pos] - tank)
-            spent += missing * P[pos]
-            tank += missing
-
-        else:
+        if P[next_stop] > P[pos]:
             # no station has cheaper fuel
             # buy all fuel here
             missing = max(0, L - tank)
             spent += missing * P[pos]
             tank = L
-            # go to farthest station
-            next_stop = farthest_stop
 
-        if next_stop <= pos:
+        else:
+            # buy enough to get to next_stop
+            missing = max(0, S[next_stop] - S[pos] - tank)
+            spent += missing * P[pos]
+            tank += missing
+
+        if S[next_stop] > max_range:
             print("Stuck")
             break
 
