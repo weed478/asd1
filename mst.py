@@ -5,12 +5,9 @@ def weight(e):
     return e[2]
 
 
-def kruskal(G):
-    n = len(G)
+def kruskal(G, n):
     G.sort(key=weight)
-
-    vert = [None] + [Node(i) for i in range(n)]
-
+    vert = [Node(i) for i in range(n)]
     S = []
 
     for e in G:
@@ -21,17 +18,18 @@ def kruskal(G):
     return S
 
 
-# edge list
-G = [(1, 2, 3),
-     (1, 4, 7),
-     (3, 4, 12),
-     (2, 3, 7),
-     (2, 6, 1),
-     (3, 6, 8),
-     (3, 5, 2),
-     (4, 5, 4),
-     (5, 7, 10),
-     (5, 8, 6),
-     (7, 8, 5)]
+if __name__ == "__main__":
+    # edge list
+    G = [(1, 2, 3),
+         (1, 4, 7),
+         (3, 4, 12),
+         (2, 3, 7),
+         (2, 6, 1),
+         (3, 6, 8),
+         (3, 5, 2),
+         (4, 5, 4),
+         (5, 7, 10),
+         (5, 8, 6),
+         (7, 8, 5)]
 
-print(kruskal(G))
+    print(kruskal(G, 9))
