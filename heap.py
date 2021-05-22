@@ -89,6 +89,12 @@ class Heap:
             self.swap(i, parent(i))
             i = parent(i)
 
+    def increase_key(self, i, k):
+        self[i] = k
+        while parent(i) >= 0 and self.cmp(self[i], self[parent(i)]):
+            self.swap(i, parent(i))
+            i = parent(i)
+
     def sort(self):
         while len(self) > 0:
             self[len(self)] = self.extract_top()
@@ -96,10 +102,10 @@ class Heap:
 
 if __name__ == "__main__":
     t = [5, 3, 4, 1, 2, 8, 7, 9, 6, 0]
-    print(t)
 
     h = MinHeap(t)
     h.build()
-    h.sort()
+    print(t)
 
+    h.increase_key(5, -1)
     print(t)
