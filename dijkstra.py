@@ -1,5 +1,6 @@
 from math import inf
 from heap import Heap
+from index_array import IndexArray
 
 
 def dijkstra(adj, s):
@@ -7,7 +8,9 @@ def dijkstra(adj, s):
 
     d = [inf] * n
     parent = [None] * n
-    Q = Heap(list(range(n)), lambda u, v: d[u] < d[v])
+
+    heap = IndexArray(n)
+    Q = Heap(heap, lambda u, v: d[u] < d[v])
 
     d[s] = 0
     Q.build()
@@ -18,7 +21,7 @@ def dijkstra(adj, s):
             # relax
             if d[u] + w < d[v]:
                 d[v] = d[u] + w
-                Q.build()
+                Q.increase_key(heap.index_of(v), v)
                 parent[v] = u
 
     return d
