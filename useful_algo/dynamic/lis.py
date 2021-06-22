@@ -25,7 +25,7 @@ def lis(A):
     return print_lis(A, F, P, n, m, [])
 
 
-# t = [3, 1, 5, 7, 2, 4, 9, 3, 17, 3]
-t = [2, 1, 4, 3]
-print(lis(t))
-
+if __name__ == "__main__":
+    # t = [3, 1, 5, 7, 2, 4, 9, 3, 17, 3]
+    t = [2, 1, 4, 3]
+    print(lis(t))

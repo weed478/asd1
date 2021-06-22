@@ -97,37 +97,38 @@ def tspb(C):
     print(C[0])
 
 
-C = [City("Wrocław", 0, 2),
-     City("Warszawa", 4, 3),
-     City("Gdańsk", 2, 4),
-     City("Kraków", 3, 1)]
+if __name__ == "__main__":
+    C = [City("Wrocław", 0, 2),
+         City("Warszawa", 4, 3),
+         City("Gdańsk", 2, 4),
+         City("Kraków", 3, 1)]
 
-D = [City("A", 0, 2),
-     City("B", 1, 1),
-     City("C", 4, 1),
-     City("D", 5, 3),
-     City("E", 6, 3),
-     City("F", 8, 3),
-     City("G", 7, 4),
-     City("H", 2, 4),
-     City("I", 0.5, 2.5),
-     City("J", 1.5, 3.5)]
-D_sol = "A I J H D E G F C B A"
-D_num = 18.892922226
+    D = [City("A", 0, 2),
+         City("B", 1, 1),
+         City("C", 4, 1),
+         City("D", 5, 3),
+         City("E", 6, 3),
+         City("F", 8, 3),
+         City("G", 7, 4),
+         City("H", 2, 4),
+         City("I", 0.5, 2.5),
+         City("J", 1.5, 3.5)]
+    D_sol = "A I J H D E G F C B A"
+    D_num = 18.892922226
 
-E = [City("A", 0, 2),
-     City("B", 4, 3),
-     City("C", 2, 4),
-     City("D", 3, 1),
-     City("E", 1, 3),
-     City("F", 0.5, -2)]
-E_sol = "A E C B D F A"
-E_num = 15.23681679184
+    E = [City("A", 0, 2),
+         City("B", 4, 3),
+         City("C", 2, 4),
+         City("D", 3, 1),
+         City("E", 1, 3),
+         City("F", 0.5, -2)]
+    E_sol = "A E C B D F A"
+    E_num = 15.23681679184
 
-F = [City("A", 0, 0),
-     City("B", 1, 1),
-     City("C", 2, 0),
-     City("D", 3, 1)]
+    F = [City("A", 0, 0),
+         City("B", 1, 1),
+         City("C", 2, 0),
+         City("D", 3, 1)]
 
-tsp(C)
-tspb(C)
+    tsp(C)
+    tspb(C)
