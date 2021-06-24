@@ -1,4 +1,3 @@
-from queue import PriorityQueue
 from math import inf
 
 
@@ -10,21 +9,14 @@ def dijkstra(G, A, B):
 
     visited = [False] * n
 
-    Q = PriorityQueue()
-    for u in range(n):
-        Q.put((0 if u == A else inf, u))
-
-    while not Q.empty():
-        _, u = Q.get()
-        if visited[u]:
-            continue
-
+    for _ in range(n):
+        u = min(range(n), key=lambda u: inf if visited[u] else d[u])
         visited[u] = True
+
         for v in range(n):
             if G[u][v] > 0:
                 if d[u] + G[u][v] < d[v]:
                     d[v] = d[u] + G[u][v]
-                    Q.put((d[v], v))
 
     return d
 
