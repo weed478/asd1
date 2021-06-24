@@ -5,6 +5,7 @@ Do wyczerpania znaków:
 """
 
 from collections import deque
+from zad1testy import runtests
 
 
 """
@@ -75,3 +76,5 @@ if __name__ == "__main__":
 
     print(tanagram("kotomysz", "tokmysoz", 2))
     print(tanagram2("kotomysz", "tokmysoz", 2))
+
+    runtests(tanagram2)

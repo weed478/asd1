@@ -1,4 +1,5 @@
 from math import inf
+from zad2testy import runtests
 
 
 class Node:
@@ -112,3 +113,5 @@ if __name__ == "__main__":
     set_right(C, G, 10)
 
     print(valuable_tree(A, 3))
+
+    runtests(valuable_tree)
